@@ -1,0 +1,25 @@
+- name: "run command"
+  become: yes
+  remote_user: ec2-user
+  become_user: root
+  gather_facts: no
+  hosts: all
+  tasks:
+
+# Create user and add him to groups
+    - name: Ensure a 'docker' group
+      group:
+        name: docker
+        state: present
+
+    - name: Add a new user
+      user:
+        name: "jenkins"
+        shell: /bin/bash
+#        password: "{{ user_password | password_hash('sha512') }}"
+        groups: "docker"
+
+    - name: Restart jenkins
+      service:
+        name: jenkins
+        state: restarted

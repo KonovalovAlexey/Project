@@ -1,0 +1,17 @@
+.settings/*
+.classpath
+.project
+.factorypath
+.attach_pid*
+.idea
+*.iml
+.sts4-cache/
+.vscode
+.terraform
+.terraform.*
+terraform.tfstate
+terraform.tfstate.*
+*.cfg
+.vagrant
+hosts
+Vagrant/*

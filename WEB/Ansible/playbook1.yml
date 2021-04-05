@@ -1,0 +1,9 @@
+---
+
+- name: Server for docker deploy using
+  hosts: all
+  become: yes
+
+  roles:
+  - docker_instal
+  - create_user

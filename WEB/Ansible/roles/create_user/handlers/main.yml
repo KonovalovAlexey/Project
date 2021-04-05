@@ -1,0 +1,5 @@
+---
+# handlers file for docker_instal
+
+- name: Restart sshd
+  service: name=sshd state=restarted

@@ -1,0 +1,34 @@
+# Create user and add him to groups
+- name: Ensure a 'docker' group
+  group:
+    name: docker
+    state: present
+
+- name: Add a new user
+  user:
+    name: "{{ user }}"
+    shell: /bin/bash
+    password: "{{ user_password | password_hash('sha512') }}"
+    groups: "docker"
+
+- name: Deploy SSH Key
+  authorized_key:
+    user: "{{ user }}"
+    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    state: present
+
+
+
+- name: Update sshd  отмена запрета
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication no"
+    line: "PasswordAuthentication yes"
+    state: present
+
+- name: Update sshd  for  user
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    line: "AllowUsers deploy"
+  notify:
+    - Restart sshd
