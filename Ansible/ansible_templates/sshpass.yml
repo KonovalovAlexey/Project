@@ -1,6 +1,6 @@
 ---
 - name: "AWS - Install docker"
-  hosts: jenkins
+  hosts: all
   become: yes
   remote_user: ec2-user
   become_user: root
@@ -20,7 +20,7 @@
 
 
     - name: Install epel-release
-      shell: "amazon-linux-extras install epel"
+      shell: "amazon-linux-extras install epel -y"
 
     - name: Install sshpass
       yum:

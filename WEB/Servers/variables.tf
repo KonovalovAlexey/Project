@@ -3,14 +3,19 @@ variable "allowed_ports" {
   description = "List of ports allowed on servers"
 }
 
-variable "region-appserver" {
+variable "region-app" {
   type    = string
-  default = "eu-central-1"
+  default = "eu-west-3"
 }
 
 variable "external_ip" {
   type    = string
   default = "0.0.0.0/0"
+}
+
+variable "dns-name" {
+  type    = string
+  default = "adv-host.co.uk"
 }
 
 variable "my_ip" {

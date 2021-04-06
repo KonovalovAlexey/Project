@@ -18,17 +18,23 @@
     state: present
 
 
+#- name: Update sshd  for  user
+#  lineinfile:
+#    dest: /etc/ssh/sshd_config
+#    line: "AllowUsers deploy"
+#  notify:
+#    - Restart sshd
 
 - name: Update sshd  отмена запрета
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: "^PasswordAuthentication no"
-    line: "PasswordAuthentication yes"
+    line: "Match User deploy"
     state: present
 
-- name: Update sshd  for  user
+- name: Update sshd  отмена запрета
   lineinfile:
     dest: /etc/ssh/sshd_config
-    line: "AllowUsers deploy"
+    line: "PasswordAuthentication yes"
+    state: present
   notify:
     - Restart sshd

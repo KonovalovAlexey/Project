@@ -26,6 +26,7 @@
         - lvm2
         - amazon-linux-extras
 
+
     - name: Add extras repository
       shell: yum-config-manager --enable extras
 
@@ -38,6 +39,6 @@
         state: started
         enabled: yes
 
-    - name: Install sshpass
-      shell: "amazon-linux-extras install sshpass"
+
+
 

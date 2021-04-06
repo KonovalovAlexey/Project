@@ -8,7 +8,7 @@ data "aws_ssm_parameter" "linuxAmi" {
 #Create key-pair for logging into EC2 in us-east-1
 resource "aws_key_pair" "master-key" {
   provider   = aws.region-master
-  key_name   = "id_rsa"
+  key_name   = "jenkins"
   public_key = file("~/.ssh/id_rsa.pub")
 }
 
@@ -23,7 +23,7 @@ resource "aws_instance" "jenkins-master" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.jenkins-sg.id]
   subnet_id                   = aws_subnet.subnet_1.id
-  user_data                   = file("user_data.sh")
+//  user_data                   = file("user_data.sh")
   provisioner "local-exec" {
     command = <<EOF
 aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region-master} --instance-ids ${self.id} \
@@ -36,3 +36,5 @@ EOF
   }
   depends_on = [aws_main_route_table_association.set-master-default-rt-assoc]
 }
+
+
