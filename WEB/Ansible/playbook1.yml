@@ -7,3 +7,4 @@
   roles:
   - docker_instal
   - create_user
+  - ansible_install
