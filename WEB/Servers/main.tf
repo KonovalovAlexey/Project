@@ -1,3 +1,7 @@
+provider "aws" {
+  region = var.region
+  alias   = "region-app"
+}
 
 data "aws_availability_zones" "available" {}
 data "aws_ami" "latest_amazon_linux" {
@@ -10,11 +14,13 @@ data "aws_ami" "latest_amazon_linux" {
 }
 
 resource "aws_key_pair" "master-key" {
-
+  provider   = aws.region-app
   key_name   = "paris"
   public_key = file("~/.ssh/id_rsa.pub")
+
 }
 resource "aws_instance" "test_server" {
+  provider   = aws.region-app
   ami = data.aws_ami.latest_amazon_linux.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.server_sg.id]
@@ -23,14 +29,15 @@ resource "aws_instance" "test_server" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.subnet_1.id
   tags = {
-    Name = "Server-QA"
+    Name = "Server-Dev"
 
   }
 }
 
 
 resource "aws_security_group" "server_sg" {
-  name        = "Server-QA Security Group"
+  provider   = aws.region-app
+  name        = "Server-Dev Security Group"
   description = "QA SecurityGroup"
   vpc_id = aws_vpc.vpc_app.id
   dynamic "ingress" {

@@ -3,7 +3,7 @@ variable "allowed_ports" {
   description = "List of ports allowed on servers"
 }
 
-variable "region-app" {
+variable "region" {
   type    = string
   default = "eu-west-3"
 }

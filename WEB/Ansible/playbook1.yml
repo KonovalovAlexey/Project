@@ -1,10 +1,9 @@
 ---
 
 - name: Server for docker deploy using
-  hosts: all
+  hosts: linux
   become: yes
 
   roles:
   - docker_instal
   - create_user
-  - ansible_install

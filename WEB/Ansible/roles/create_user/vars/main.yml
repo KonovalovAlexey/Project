@@ -2,3 +2,4 @@
 # vars file for docker_instal
 user: deploy
 user_password: Deploy
+

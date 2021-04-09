@@ -33,6 +33,12 @@
     - name: Install docker-ce via amazon-linux-extras packages
       shell: "amazon-linux-extras install docker=18.06.1 -y"
 
+    - name: Add a new user
+      user:
+        name: "jenkins"
+        shell: /bin/bash
+        groups: "docker"
+
     - name: Enable Docker CE service at startup
       service:
         name: docker

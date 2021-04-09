@@ -13,17 +13,11 @@
 
 - name: Deploy SSH Key
   authorized_key:
-    user: "{{ user }}"
-    key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+    user: "ec2-user"
+    key: "{{ lookup('file', '~/.ssh/master.pub') }}"
     state: present
 
 
-#- name: Update sshd  for  user
-#  lineinfile:
-#    dest: /etc/ssh/sshd_config
-#    line: "AllowUsers deploy"
-#  notify:
-#    - Restart sshd
 
 - name: Update sshd  отмена запрета
   lineinfile:
@@ -38,3 +32,4 @@
     state: present
   notify:
     - Restart sshd
+

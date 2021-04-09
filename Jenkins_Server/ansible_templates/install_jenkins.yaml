@@ -15,8 +15,6 @@
         - git
         - maven
 
-
-
     - name: Setup Jenkins Repo
       get_url:
         url: https://pkg.jenkins.io/redhat/jenkins.repo
