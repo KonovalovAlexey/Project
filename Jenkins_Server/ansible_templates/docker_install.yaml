@@ -36,7 +36,7 @@
     - name: Add a new user
       user:
         name: "jenkins"
-        shell: /bin/bash
+#        shell: /bin/bash
         groups: "docker"
 
     - name: Enable Docker CE service at startup
