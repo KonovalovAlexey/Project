@@ -1,0 +1,17 @@
+---
+- name: "run command"
+  remote_user: ec2-user
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Copy key to DevServer
+      ansible.builtin.copy:
+        src: "~/.ssh/master.pem"
+        dest: "/home/ec2-user/.ssh/master.pem"
+        mode: '0400'
+
+
+    - name: Evaluating the authentication agent & adding the key...
+      shell: |
+        eval "$(ssh-agent)"
+        ssh-add ~/.ssh/master.pem
