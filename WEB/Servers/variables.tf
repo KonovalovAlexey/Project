@@ -3,10 +3,6 @@ variable "allowed_ports" {
   description = "List of ports allowed on servers"
 }
 
-variable "region" {
-  type    = string
-  default = "eu-west-3"
-}
 
 variable "external_ip" {
   type    = string
@@ -18,7 +14,29 @@ variable "dns-name" {
   default = "adv-host.co.uk"
 }
 
-variable "my_ip" {
-  type = string
-  default = "91.214.85.149/32"
+variable "web_name" {
+  type    = string
+  default = "pet"
+}
+
+variable "vpc_cidr" {
+  default = "10.0.0.0/16"
+}
+
+variable "env" {
+  default = "dev"
+}
+
+variable "public_subnets" {
+  default = [
+    "10.0.1.0/24",
+    "10.0.2/0/24"
+  ]
+}
+
+variable "private_subnets" {
+  default = [
+    "10.0.11.0/24",
+    "10.0.22.0/24"
+  ]
 }
