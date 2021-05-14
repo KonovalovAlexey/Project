@@ -5,5 +5,8 @@
   become: yes
 
   roles:
-  - docker_instal
-  - create_user
+    - role: docker_instal
+      tags: docker
+    - role: create_user
+      tags: user
+
