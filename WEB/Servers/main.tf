@@ -1,4 +1,11 @@
+provider "aws" {
+  region = var.region
+  alias   = "region-app"
+}
 
+resource "null_resource" "example" {}
+
+data "aws_availability_zones" "available" {}
 data "aws_ami" "latest_amazon_linux" {
   owners      = ["amazon"]
   most_recent = true
@@ -9,18 +16,20 @@ data "aws_ami" "latest_amazon_linux" {
 }
 
 resource "aws_key_pair" "master-key" {
+  provider   = aws.region-app
   key_name   = "paris"
   public_key = file("~/.ssh/id_rsa.pub")
 
 }
 resource "aws_instance" "test_server" {
-  ami                    = data.aws_ami.latest_amazon_linux.id
+  provider   = aws.region-app
+  ami = data.aws_ami.latest_amazon_linux.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.server_sg.id]
   key_name               = aws_key_pair.master-key.key_name
-  //  user_data              = file("user_data.sh")
+//  user_data              = file("user_data.sh")
   associate_public_ip_address = true
-  subnet_id                   = aws_subnet.subnet_1.id
+  subnet_id = aws_subnet.subnet_1.id
   tags = {
     Name = "Server-Dev"
 
@@ -29,6 +38,7 @@ resource "aws_instance" "test_server" {
 
 
 resource "aws_security_group" "server_sg" {
+  provider   = aws.region-app
   name        = "Server-Dev Security Group"
   description = "Dev SecurityGroup"
   vpc_id      = aws_vpc.vpc_app.id
