@@ -11,7 +11,7 @@ variable "external_ip" {
 
 variable "dns-name" {
   type    = string
-  default = "adv-host.co.uk"
+  default = "buleiko.link"
 }
 
 variable "web_name" {

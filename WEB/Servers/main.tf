@@ -14,7 +14,7 @@ resource "aws_key_pair" "master-key" {
 
 }
 resource "aws_instance" "test_server" {
-  provider   = aws.region-app
+
   ami = data.aws_ami.latest_amazon_linux.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.server_sg.id]
@@ -30,7 +30,7 @@ resource "aws_instance" "test_server" {
 
 
 resource "aws_security_group" "server_sg" {
-  provider   = aws.region-app
+
   name        = "Server-Dev Security Group"
   description = "Dev SecurityGroup"
   vpc_id      = aws_vpc.vpc_app.id
