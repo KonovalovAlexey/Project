@@ -9,6 +9,7 @@ variable "external_ip" {
   default = "0.0.0.0/0"
 }
 
+
 variable "dns-name" {
   type    = string
   default = "buleiko.link"
