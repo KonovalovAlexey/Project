@@ -1,11 +1,4 @@
-provider "aws" {
-  region = var.region
-  alias   = "region-app"
-}
 
-resource "null_resource" "example" {}
-
-data "aws_availability_zones" "available" {}
 data "aws_ami" "latest_amazon_linux" {
   owners      = ["amazon"]
   most_recent = true
@@ -16,7 +9,6 @@ data "aws_ami" "latest_amazon_linux" {
 }
 
 resource "aws_key_pair" "master-key" {
-  provider   = aws.region-app
   key_name   = "paris"
   public_key = file("~/.ssh/id_rsa.pub")
 
