@@ -3,6 +3,8 @@ provider "aws" {
   alias   = "region-app"
 }
 
+resource "null_resource" "example" {}
+
 data "aws_availability_zones" "available" {}
 data "aws_ami" "latest_amazon_linux" {
   owners      = ["amazon"]
