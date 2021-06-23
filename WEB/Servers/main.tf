@@ -23,7 +23,7 @@ resource "aws_instance" "test_server" {
   associate_public_ip_address = true
   subnet_id = aws_subnet.subnet_1.id
   tags = {
-    Name = "Server-Dev"
+    Name = "Dev-Server"
 
   }
 }
