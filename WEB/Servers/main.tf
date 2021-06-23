@@ -8,11 +8,11 @@ data "aws_ami" "latest_amazon_linux" {
   }
 }
 
-resource "aws_key_pair" "master-key" {
-  key_name   = "paris"
-  public_key = file("~/.ssh/id_rsa.pub")
-
-}
+//resource "aws_key_pair" "master-key" {
+//  key_name   = "paris"
+//  public_key = file("~/.ssh/id_rsa.pub")
+//
+//}
 resource "aws_instance" "test_server" {
 
   ami = data.aws_ami.latest_amazon_linux.id
