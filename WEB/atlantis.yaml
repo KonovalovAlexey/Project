@@ -1,0 +1,8 @@
+version: 3
+automerge: true
+projects:
+- dir: Servers
+  workflow: tests
+  autoplan:
+    when_modified: ["../Servers/*.tf", "*.tf*", "../**/*.tpl"]
+    enabled: true
