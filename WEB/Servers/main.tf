@@ -18,7 +18,7 @@ resource "aws_instance" "test_server" {
   ami = data.aws_ami.latest_amazon_linux.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.server_sg.id]
-  key_name               = aws_key_pair.master-key.key_name
+//  key_name               = aws_key_pair.master-key.key_name
 //  user_data              = file("user_data.sh")
   associate_public_ip_address = true
   subnet_id = aws_subnet.subnet_1.id
